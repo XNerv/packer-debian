@@ -1,0 +1,263 @@
+{
+    "variables": {
+        "arch"              : "amd64",
+        "cpus"              : "2",
+        "debian_version"    : "7.9.0",
+        "disk_size"         : "32768",
+        "guest_os_type"     : "Debian_64",
+        "headless"          : "false",
+        "iso_checksum"      : "bfa1f3e20dd9a375335396a5a5b6dbdebd5e5600fa615a7db08fcb5b6d35dc8fc8322d6d32906a83504dd3af19806bb48effd9131d3e65d367f6b6eb96dcf780",
+        "iso_checksum_type" : "sha512",
+        "memory_size"       : "2048",
+        "prefix"            : "desktop",
+        "ssh_username"      : "vagrant",
+        "ssh_password"      : "vagrant",
+        "ssh_port"          : "22",
+        "video_ram"         : "128"
+    },
+
+    "builders": [
+    {
+        "boot_command": [
+            "<esc><wait>",
+            "install <wait>",
+            "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `prefix`}}.cfg <wait>",
+            "debian-installer=en_US <wait>",
+            "auto <wait>",
+            "locale=en_US <wait>",
+            "kbd-chooser/method=us <wait>",
+            "keyboard-configuration/xkb-keymap=us <wait>",
+            "netcfg/get_hostname={{ .Name }} <wait>",
+            "netcfg/get_domain=xnerv.com <wait>",
+            "fb=false <wait>",
+            "debconf/frontend=noninteractive <wait>",
+            "console-setup/ask_detect=false <wait>",
+            "console-keymaps-at/keymap=us <wait>",
+            "<enter><wait>"
+        ],
+
+        "boot_wait"            : "10s",
+        "disk_size"            : "{{user `disk_size`}}",
+        "guest_additions_path" : "VBoxGuestAdditions_{{.Version}}.iso",
+        "guest_os_type"        : "{{user `guest_os_type`}}",
+        "headless"             : "{{user `headless`}}",
+        "http_directory"       : "data/{{user `debian_version`}}/http",
+        "iso_checksum"         : "{{user `iso_checksum`}}",
+        "iso_checksum_type"    : "{{user `iso_checksum_type`}}",
+
+        "iso_urls": [
+            "http://cdimage.debian.org/cdimage/archive/{{user `debian_version`}}/{{user `arch`}}/iso-cd/debian-{{user `debian_version`}}-{{user `arch`}}-netinst.iso"
+        ],
+
+        "shutdown_command" : "echo 'vagrant'|sudo -S /sbin/shutdown -hP now",
+        "ssh_password"     : "{{user `ssh_password`}}",
+        "ssh_port"         : "{{user `ssh_port`}}",
+        "ssh_username"     : "{{user `ssh_username`}}",
+        "ssh_wait_timeout" : "10000s",
+        "type"             : "virtualbox-iso",
+
+        "vboxmanage": [
+            [
+                "modifyvm",
+                "{{.Name}}",
+                "--cpus",
+                "{{user `cpus`}}"
+            ],
+
+            [
+                "modifyvm",
+                "{{.Name}}",
+                "--memory",
+                "{{user `memory_size`}}"
+            ],
+
+            [
+                "modifyvm",
+                "{{.Name}}",
+                "--vram",
+                "{{user `video_ram`}}"
+            ],
+
+            [
+                "modifyvm",
+                "{{.Name}}",
+                "--clipboard",
+                "bidirectional"
+            ]
+        ],
+
+        "virtualbox_version_file": ".vbox_version"
+    }],
+
+    "post-processors": [
+        {
+            "type"              : "vagrant",
+            "compression_level" : "9",
+            "output"            : "build/{{user `prefix`}}-debian-{{user `debian_version`}}-{{user `arch`}}-{{.Provider}}.box"
+        }
+    ],
+
+    "provisioners": [
+        {
+            "destination" : "/tmp",
+            "source"      : "data/{{user `debian_version`}}/files",
+            "type"        : "file"
+        },
+
+        {
+            "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+            "scripts": [
+                "scripts/startup.sh",
+                "scripts/install-sshd.sh",
+                "scripts/install-puppet.sh",
+                "scripts/install-chef.sh",
+                "scripts/install-vbguest.sh",
+                "scripts/conf-vagrant.sh",
+                "scripts/cleanup.sh"
+            ],
+            
+            "type": "shell"
+        }
+    ]
+}
+
+
+
+
+
+{
+  "builders": [
+    {
+      "boot_command": [
+        "<esc><wait>",
+        "install <wait>",
+        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `prefix`}}.cfg <wait>",
+        "debian-installer=en_US <wait>",
+        "auto <wait>",
+        "locale=en_US <wait>",
+        "kbd-chooser/method=us <wait>",
+        "keyboard-configuration/xkb-keymap=us <wait>",
+        "netcfg/get_hostname={{ .Name }} <wait>",
+        "netcfg/get_domain=xnerv.com <wait>",
+        "fb=false <wait>",
+        "debconf/frontend=noninteractive <wait>",
+        "console-setup/ask_detect=false <wait>",
+        "console-keymaps-at/keymap=us <wait>",
+        "<enter><wait>"
+      ],
+      "boot_wait": "10s",
+      "disk_size": "{{user `disk_size`}}",
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "guest_os_type": "{{user `guest_os_type`}}",
+      "headless": "{{user `headless`}}",
+      "http_directory": "data/{{user `debian_version`}}/http",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_urls": [
+        "http://cdimage.debian.org/cdimage/archive/{{user `debian_version`}}/{{user `arch`}}/iso-cd/debian-{{user `debian_version`}}-{{user `arch`}}-netinst.iso"
+      ],
+      "shutdown_command": "echo 'vagrant'|sudo -S /sbin/shutdown -hP now",
+      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_port": "{{user `ssh_port`}}",
+      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_wait_timeout": "10000s",
+      "type": "virtualbox-iso",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "{{user `cpus`}}"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "{{user `memory_size`}}"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "{{user `video_ram`}}"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--usb",
+          "on"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--audiocontroller",
+          "{{user `audio_controller`}}"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--audio",
+          "dsound"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--accelerate3d",
+          "on"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--clipboard",
+          "bidirectional"
+        ]
+      ],
+      "virtualbox_version_file": ".vbox_version"
+    }
+  ],
+  "post-processors": [
+    {
+      "compression_level": "9",
+      "output": "build/{{user `prefix`}}-debian-{{user `debian_version`}}-{{user `arch`}}-{{.Provider}}.box",
+      "type": "vagrant"
+    }
+  ],
+  "provisioners": [
+    {
+      "destination": "/tmp",
+      "source": "data/{{user `debian_version`}}/files",
+      "type": "file"
+    },
+    {
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+      "scripts": [
+        "scripts/startup.sh",
+        "scripts/install-sshd.sh",
+        "scripts/install-puppet.sh",
+        "scripts/install-chef.sh",
+        "scripts/install-vbguest.sh",
+        "scripts/conf-vagrant.sh",
+        "scripts/cleanup.sh"
+      ],
+      "type": "shell"
+    }
+  ],
+  "variables": {
+    "arch": "amd64",
+    "audio_controller": "ac97",
+    "cpus": "2",
+    "debian_version": "7.9.0",
+    "disk_size": "32768",
+    "guest_os_type": "Debian_64",
+    "headless": "false",
+    "iso_checksum": "bfa1f3e20dd9a375335396a5a5b6dbdebd5e5600fa615a7db08fcb5b6d35dc8fc8322d6d32906a83504dd3af19806bb48effd9131d3e65d367f6b6eb96dcf780",
+    "iso_checksum_type": "sha512",
+    "memory_size": "2048",
+    "prefix": "desktop",
+    "ssh_password": "vagrant",
+    "ssh_port": "22",
+    "ssh_username": "vagrant",
+    "video_ram": "128"
+  }
+}
+

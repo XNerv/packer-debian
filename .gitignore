@@ -1,0 +1,13 @@
+
+# exclude build directory
+**/build/
+
+# exclude packer cache directory
+**/packer_cache/
+
+# Junk Files
+*.DS_Store
+
+# Windows image file caches
+[Tt]humbs.db
+ehthumbs.db
