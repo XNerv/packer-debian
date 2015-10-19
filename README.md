@@ -20,10 +20,10 @@ Packer project to generate Debian Vagrant Boxes.
               default.
       
     * The following boxes are built with above configuration:
-        * [(Virtualbox) xnerv/standard-debian-7.9.0-i386.box](https://atlas.hashicorp.com/xnerv/boxes/standard-debian-7.9.0-i386.box)
-        * [(Virtualbox) xnerv/standard-debian-7.9.0-amd64](https://atlas.hashicorp.com/xnerv/boxes/standard-debian-7.9.0-amd64)
-        * [(Virtualbox) xnerv/desktop-debian-7.9.0-i386](https://atlas.hashicorp.com/xnerv/boxes/desktop-debian-7.9.0-i386)
-        * [(Virtualbox) xnerv/desktop-debian-7.9.0-amd64](https://atlas.hashicorp.com/xnerv/boxes/desktop-debian-7.9.0-amd64)
+        * [(virtualbox) xnerv/standard-debian-7.9.0-i386.box](https://atlas.hashicorp.com/xnerv/boxes/standard-debian-7.9.0-i386.box)
+        * [(virtualbox) xnerv/standard-debian-7.9.0-amd64.box](https://atlas.hashicorp.com/xnerv/boxes/standard-debian-7.9.0-amd64.box)
+        * [(virtualbox) xnerv/desktop-debian-7.9.0-i386.box](https://atlas.hashicorp.com/xnerv/boxes/desktop-debian-7.9.0-i386.box)
+        * [(virtualbox) xnerv/desktop-debian-7.9.0-amd64.box](https://atlas.hashicorp.com/xnerv/boxes/desktop-debian-7.9.0-amd64.box)
     
 ## Usage
 1. You need to have installed in your system the following softwares:
