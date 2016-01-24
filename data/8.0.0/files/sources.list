@@ -1,0 +1,38 @@
+##
+## Security/Update mirrors
+##
+
+deb http://security.debian.org/ jessie/updates main contrib non-free
+deb-src http://security.debian.org/ jessie/updates main contrib non-free
+
+# Brasil
+deb http://ftp.br.debian.org/debian/ jessie-updates main contrib non-free
+deb-src http://ftp.br.debian.org/debian/ jessie-updates main contrib non-free
+
+# United State
+deb http://ftp.us.debian.org/debian/ jessie-updates main contrib non-free
+deb-src http://ftp.us.debian.org/debian/ jessie-updates main contrib non-free
+	
+# Japan
+deb http://ftp.jp.debian.org/debian/ jessie-updates main contrib non-free
+deb-src http://ftp.jp.debian.org/debian/ jessie-updates main contrib non-free
+
+##
+## Official mirrors
+##
+
+# Brasil
+deb http://ftp.br.debian.org/debian jessie main contrib non-free
+deb-src http://ftp.br.debian.org/debian jessie main contrib non-free
+
+# United State
+deb http://ftp.us.debian.org/debian jessie main contrib non-free
+deb-src http://ftp.us.debian.org/debian jessie main contrib non-free
+	
+# Japan
+deb http://ftp.jp.debian.org/debian jessie main contrib non-free
+deb-src http://ftp.jp.debian.org/debian jessie main contrib non-free
+
+##
+## Other sources
+##
