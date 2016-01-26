@@ -6,7 +6,7 @@ Packer project to generate Debian Vagrant Boxes.
 * Debian 8.0.0 (Jessie)
     * Provider(s)          : VirtualBox.
     * Arch(s)              : i386, amd64. 
-    * Installation Type(s) : Standard (Console), Desktop (KDE/GNOME).
+    * Installation Type(s) : Standard (Console), Desktop (GNOME).
      
     * Additional Info      : 
         * Root login is enabled by default and the password is <i>123.Password</i> 
@@ -28,7 +28,7 @@ Packer project to generate Debian Vagrant Boxes.
 * Debian 7.9.0 (Wheezy)
     * Provider(s)          : VirtualBox.
     * Arch(s)              : i386, amd64. 
-    * Installation Type(s) : Standard (Console), Desktop (KDE/GNOME).
+    * Installation Type(s) : Standard (Console), Desktop (GNOME).
      
     * Additional Info      : 
         * Root login is enabled by default and the password is <i>123.Password</i> 
@@ -49,9 +49,10 @@ Packer project to generate Debian Vagrant Boxes.
 
 ## Usage
 1. You need to have installed in your system the following softwares:
-    * VirtualBox (https://www.virtualbox.org) - Tested with version 4.3.x
-    * Vagrant    (https://www.vagrantup.com)  - Tested with version 1.7.4
-    * Packer     (https://www.packer.io)      - Tested with version v0.8.6
+    * [VirtualBox](https://www.virtualbox.org)                 - Tested with version 5.0.x
+    * [Vagrant](https://www.vagrantup.com)                     - Tested with version 1.7.4
+    * [vbguest](https://github.com/dotless-de/vagrant-vbguest) - Tested with version 0.11.0
+    * [Packer](https://www.packer.io)                          - Tested with version v0.8.6
 
 2. Clone this git repository in /some/path and go to him.
 
