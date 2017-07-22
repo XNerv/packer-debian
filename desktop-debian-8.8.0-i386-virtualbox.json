@@ -1,18 +1,19 @@
 {
     "variables": {
-        "arch"              : "amd64",
-        "cpus"              : "1",
-        "debian_version"    : "7.9.0",
+        "arch"              : "i386",
+        "cpus"              : "2",
+        "debian_version"    : "8.8.0",
         "disk_size"         : "32768",
-        "guest_os_type"     : "Debian_64",
+        "guest_os_type"     : "Debian",
         "headless"          : "false",
-        "iso_checksum"      : "bfa1f3e20dd9a375335396a5a5b6dbdebd5e5600fa615a7db08fcb5b6d35dc8fc8322d6d32906a83504dd3af19806bb48effd9131d3e65d367f6b6eb96dcf780",
+        "iso_checksum"      : "49f90c2b32884f429326242d5518836b70336026207313288b24dade9bc80d0360dc9a8e036af46858447b608807fad843da957bb232b6e73faca8dc0ce28ff9",
         "iso_checksum_type" : "sha512",
-        "memory_size"       : "512",
-        "prefix"            : "standard",
+        "memory_size"       : "2048",
+        "prefix"            : "desktop",
         "ssh_username"      : "vagrant",
         "ssh_password"      : "vagrant",
-        "ssh_port"          : "22"
+        "ssh_port"          : "22",
+        "video_ram"         : "128"
     },
 
     "builders": [
@@ -52,7 +53,7 @@
         "ssh_password"     : "{{user `ssh_password`}}",
         "ssh_port"         : "{{user `ssh_port`}}",
         "ssh_username"     : "{{user `ssh_username`}}",
-        "ssh_wait_timeout" : "10000s",
+        "ssh_wait_timeout" : "20000s",
         "type"             : "virtualbox-iso",
 
         "vboxmanage": [
@@ -62,12 +63,26 @@
                 "--cpus",
                 "{{user `cpus`}}"
             ],
-  
+
             [
                 "modifyvm",
                 "{{.Name}}",
                 "--memory",
                 "{{user `memory_size`}}"
+            ],
+
+            [
+                "modifyvm",
+                "{{.Name}}",
+                "--vram",
+                "{{user `video_ram`}}"
+            ],
+
+            [
+                "modifyvm",
+                "{{.Name}}",
+                "--clipboard",
+                "bidirectional"
             ]
         ],
 
@@ -94,7 +109,6 @@
             "scripts": [
                 "scripts/startup.sh",
                 "scripts/install-sshd.sh",
-                "scripts/install-puppet.sh",
                 "scripts/install-chef.sh",
                 "scripts/install-vbguest.sh",
                 "scripts/conf-vagrant.sh",

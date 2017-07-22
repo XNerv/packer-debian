@@ -1,12 +1,12 @@
 {
     "variables": {
-        "arch"              : "amd64",
+        "arch"              : "i386",
         "cpus"              : "2",
-        "debian_version"    : "7.9.0",
+        "debian_version"    : "7.11.0",
         "disk_size"         : "32768",
-        "guest_os_type"     : "Debian_64",
+        "guest_os_type"     : "Debian",
         "headless"          : "false",
-        "iso_checksum"      : "bfa1f3e20dd9a375335396a5a5b6dbdebd5e5600fa615a7db08fcb5b6d35dc8fc8322d6d32906a83504dd3af19806bb48effd9131d3e65d367f6b6eb96dcf780",
+        "iso_checksum"      : "c83963f56403df72098f55afe8466d0704250e4bdcd29943ba0e6dfbf6bb73120b1b964f35568312f6d49b5b2dfc733480f561d90858e0c0440cfcd049d7a19c",
         "iso_checksum_type" : "sha512",
         "memory_size"       : "2048",
         "prefix"            : "desktop",
@@ -109,7 +109,6 @@
             "scripts": [
                 "scripts/startup.sh",
                 "scripts/install-sshd.sh",
-                "scripts/install-puppet.sh",
                 "scripts/install-chef.sh",
                 "scripts/install-vbguest.sh",
                 "scripts/conf-vagrant.sh",
