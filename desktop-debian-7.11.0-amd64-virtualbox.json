@@ -1,18 +1,19 @@
 {
     "variables": {
-        "arch"              : "i386",
-        "cpus"              : "1",
-        "debian_version"    : "7.9.0",
+        "arch"              : "amd64",
+        "cpus"              : "2",
+        "debian_version"    : "7.11.0",
         "disk_size"         : "32768",
-        "guest_os_type"     : "Debian",
+        "guest_os_type"     : "Debian_64",
         "headless"          : "false",
-        "iso_checksum"      : "054506dc21463fcdd7bf6ec78844e01e44f0601e85ed78227031f85572fb091d494d62ebe4943fb0e3a63b0728fa7282abdc2588687b87143366372c82dbe95f",
+        "iso_checksum"      : "a6323a048e17270caec2ba2719694e82b7c8a1ab997f427ce5315fa4384a23e62e6d65c701e5c98d784b7ad98e3697fabb294bf67aee864084abe92bb87f20a5",
         "iso_checksum_type" : "sha512",
-        "memory_size"       : "512",
-        "prefix"            : "standard",
+        "memory_size"       : "2048",
+        "prefix"            : "desktop",
         "ssh_username"      : "vagrant",
         "ssh_password"      : "vagrant",
-        "ssh_port"          : "22"
+        "ssh_port"          : "22",
+        "video_ram"         : "128"
     },
 
     "builders": [
@@ -62,12 +63,26 @@
                 "--cpus",
                 "{{user `cpus`}}"
             ],
-  
+
             [
                 "modifyvm",
                 "{{.Name}}",
-       	        "--memory",
+                "--memory",
                 "{{user `memory_size`}}"
+            ],
+
+            [
+                "modifyvm",
+                "{{.Name}}",
+                "--vram",
+                "{{user `video_ram`}}"
+            ],
+
+            [
+                "modifyvm",
+                "{{.Name}}",
+                "--clipboard",
+                "bidirectional"
             ]
         ],
 
@@ -94,7 +109,6 @@
             "scripts": [
                 "scripts/startup.sh",
                 "scripts/install-sshd.sh",
-                "scripts/install-puppet.sh",
                 "scripts/install-chef.sh",
                 "scripts/install-vbguest.sh",
                 "scripts/conf-vagrant.sh",
