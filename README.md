@@ -3,7 +3,7 @@
 # Packer Project - Debian
 Packer project to generate Debian Vagrant Boxes.
 
-* Debian 8.0.0 (Jessie)
+* Debian 8.8.0 (Jessie)
     * Provider(s)          : VirtualBox.
     * Arch(s)              : i386, amd64. 
     * Installation Type(s) : Standard (Console), Desktop (GNOME).
@@ -20,12 +20,12 @@ Packer project to generate Debian Vagrant Boxes.
               default.
       
     * The following boxes are built with above configuration:
-        * [(virtualbox) xnerv/standard-debian-8.0.0-i386.box](https://atlas.hashicorp.com/xnerv/boxes/standard-debian-8.0.0-i386.box)
-        * [(virtualbox) xnerv/standard-debian-8.0.0-amd64.box](https://atlas.hashicorp.com/xnerv/boxes/standard-debian-8.0.0-amd64.box)
-        * [(virtualbox) xnerv/desktop-debian-8.0.0-i386.box](https://atlas.hashicorp.com/xnerv/boxes/desktop-debian-8.0.0-i386.box)
-        * [(virtualbox) xnerv/desktop-debian-8.0.0-amd64.box](https://atlas.hashicorp.com/xnerv/boxes/desktop-debian-8.0.0-amd64.box)
+        * [(virtualbox) xnerv/standard-debian-8-i386.box](https://atlas.hashicorp.com/xnerv/boxes/standard-debian-8-i386.box)
+        * [(virtualbox) xnerv/standard-debian-8-amd64.box](https://atlas.hashicorp.com/xnerv/boxes/standard-debian-8-amd64.box)
+        * [(virtualbox) xnerv/desktop-debian-8-i386.box](https://atlas.hashicorp.com/xnerv/boxes/desktop-debian-8-i386.box)
+        * [(virtualbox) xnerv/desktop-debian-8-amd64.box](https://atlas.hashicorp.com/xnerv/boxes/desktop-debian-8-amd64.box)
         
-* Debian 7.9.0 (Wheezy)
+* Debian 7.11.0 (Wheezy)
     * Provider(s)          : VirtualBox.
     * Arch(s)              : i386, amd64. 
     * Installation Type(s) : Standard (Console), Desktop (GNOME).
@@ -42,17 +42,17 @@ Packer project to generate Debian Vagrant Boxes.
               default.
       
     * The following boxes are built with above configuration:
-        * [(virtualbox) xnerv/standard-debian-7.9.0-i386.box](https://atlas.hashicorp.com/xnerv/boxes/standard-debian-7.9.0-i386.box)
-        * [(virtualbox) xnerv/standard-debian-7.9.0-amd64.box](https://atlas.hashicorp.com/xnerv/boxes/standard-debian-7.9.0-amd64.box)
-        * [(virtualbox) xnerv/desktop-debian-7.9.0-i386.box](https://atlas.hashicorp.com/xnerv/boxes/desktop-debian-7.9.0-i386.box)
-        * [(virtualbox) xnerv/desktop-debian-7.9.0-amd64.box](https://atlas.hashicorp.com/xnerv/boxes/desktop-debian-7.9.0-amd64.box)
+        * [(virtualbox) xnerv/standard-debian-7-i386.box](https://atlas.hashicorp.com/xnerv/boxes/standard-debian-7-i386.box)
+        * [(virtualbox) xnerv/standard-debian-7-amd64.box](https://atlas.hashicorp.com/xnerv/boxes/standard-debian-7-amd64.box)
+        * [(virtualbox) xnerv/desktop-debian-7-i386.box](https://atlas.hashicorp.com/xnerv/boxes/desktop-debian-7-i386.box)
+        * [(virtualbox) xnerv/desktop-debian-7-amd64.box](https://atlas.hashicorp.com/xnerv/boxes/desktop-debian-7-amd64.box)
 
 ## Usage
 1. You need to have installed in your system the following softwares:
-    * [VirtualBox](https://www.virtualbox.org)                 - Tested with version 5.0.x
-    * [Vagrant](https://www.vagrantup.com)                     - Tested with version 1.7.4
-    * [vbguest](https://github.com/dotless-de/vagrant-vbguest) - Tested with version 0.11.0
-    * [Packer](https://www.packer.io)                          - Tested with version v0.8.6
+    * [VirtualBox](https://www.virtualbox.org)                 - Tested with version 5.1.x
+    * [Vagrant](https://www.vagrantup.com)                     - Tested with version 1.9.6
+    * [vbguest](https://github.com/dotless-de/vagrant-vbguest) - Tested with version 0.14.2
+    * [Packer](https://www.packer.io)                          - Tested with version v1.0.2
 
 2. Clone this git repository in /some/path and go to him.
 
@@ -63,7 +63,7 @@ Packer project to generate Debian Vagrant Boxes.
    to your system. 
 
    <i>REMARKS</i>: Replace `<version>` by the desired version of Debian 
-   like "8.0.0" and replace `<provider>` by the virtualization provider like 
+   like "8.8.0" and replace `<provider>` by the virtualization provider like 
    "virtualbox".
 
 ## Contributing
@@ -72,6 +72,7 @@ Packer project to generate Debian Vagrant Boxes.
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request =^.~=
+6. Be happy \O/
 
 ## License
 BSD 3
